@@ -87,16 +87,12 @@ mrecv 239.0.0.11 15004 | hexdump -C
 
 - Both programs handle **binary data** (IQ, audio, etc)
 - The sender reads data in chunks of 512 int16_t values (1024 bytes)
-- Maximum packet size is 2048 bytes
 - Data is transmitted exactly as received with no encoding or transformation
 
 ### Multicast Groups
 
 - Uses IPv4 multicast addresses in the range 224.0.0.0 to 239.255.255.255
 - The example address 239.0.0.11 is in the organization-local scope (239.0.0.0/8)
-- Common multicast scopes:
-  - 224.0.0.0/24 - Local network control
-  - 239.0.0.0/8 - Organization-local scope
 
 ## Example Use Cases
 
