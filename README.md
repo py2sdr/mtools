@@ -130,13 +130,6 @@ mrecv 239.0.0.11 15004 | analyzer   # Receiver 3
 
 ## Troubleshooting
 
-### No data received
-
-1. Check that sender and receiver use the same multicast group and port
-2. Verify firewall settings allow UDP traffic on the specified port
-3. Ensure multicast routing is enabled on your network
-4. Try increasing TTL if devices are on different subnets
-
 ### Network interface selection
 
 If your system has multiple network interfaces, you may need to specify which interface to use for multicast. This can be done by modifying the code to set `imr_interface` to a specific interface address instead of `INADDR_ANY`.
@@ -172,10 +165,8 @@ ip link delete dummy0
 
 ## Limitations
 
-- Maximum packet size: 2048 bytes
 - UDP provides no guarantee of delivery or ordering
 - No built-in error correction or retransmission
-- Receiver must be running before sender starts (or it will miss initial packets)
 - No encryption or authentication
 
 ## Platform Support
