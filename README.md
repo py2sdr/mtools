@@ -13,7 +13,7 @@ This package contains two programs:
 - **msend** - Multicast sender that reads binary data from stdin and transmits it via UDP multicast
 - **mrecv** - Multicast receiver that listens for UDP multicast packets and writes them to stdout
 
-These tools are useful for streaming binary data (such as audio samples, sensor data, or SDR I/Q data) across a network to multiple receivers simultaneously. Receivers can be added and removed transparently, enabling scenarios like live spectrum monitoring, data distribution, and collaborative signal processing.
+These tools are useful for streaming binary data (such as audio samples, sensor data, or SDR I/Q data) across a network to multiple receivers simultaneously. Receivers can be added and removed transparently, enabling scenarios like live spectrum monitoring, instrumentation, data distribution, and parallel signal processing and demodulators.
 
 ## Building
 
