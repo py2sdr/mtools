@@ -122,9 +122,10 @@ mrecv -a 239.0.0.11 -p 15004 -i dummy0 | csdr convert_u16_f | ... | aplay -f S16
 data_generator | msend -a 239.0.0.11 -p 15004 -i dummy0
 
 # Multiple receivers (can run simultaneously)
-mrecv -a 239.0.0.11 -p 15004 -i dummy0 > /dev/null  # Receiver 1
-mrecv -a 239.0.0.11 -p 15004 -i dummy0 > output.bin # Receiver 2
-mrecv -a 239.0.0.11 -p 15004 -i dummy0 | analyzer   # Receiver 3
+mrecv -a 239.0.0.11 -p 15004 -i dummy0 | csdr ... | ...  # Receiver 1
+mrecv -a 239.0.0.11 -p 15004 -i dummy0 | csdr ... | ...  # Receiver 2
+mrecv -a 239.0.0.11 -p 15004 -i dummy0 | analyzer        # Receiver 3
+mrecv -a 239.0.0.11 -p 15004 -i dummy0 > output.bin      # Receiver 4
 ```
 
 ## Local Dummy Network Setup
