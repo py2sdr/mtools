@@ -180,10 +180,10 @@ ip link delete dummy0
 
 ## Limitations
 
-- UDP provides no guarantee of delivery or ordering
-- No built-in error correction or retransmission
-- Receiver must be running before sender starts (or it will miss initial packets)
-- No encryption or authentication
+- UDP provides no guarantee of delivery or ordering (I never had a problem with this)
+- No built-in error correction or retransmission (I never had a problem with this)
+- Receiver must be running before sender starts (normally not an issue)
+- No encryption or authentication (not an issue in local networks)
 
 ## Platform Support
 
