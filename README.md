@@ -104,7 +104,7 @@ mrecv 239.0.0.11 15004 | hexdump -C
 
 ```bash
 # Transmitter side - send I/Q samples
-rtl_sdr -f 100M -s 2048000 -g 40 - | msend 239.0.0.11 15004
+rtl_sdr -f 145M -s 2048000 -g 40 - | msend 239.0.0.11 15004
 
 # Receiver side - receive and process
 mrecv 239.0.0.11 15004 | csdr convert_u8_f | ...
