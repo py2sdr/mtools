@@ -151,10 +151,34 @@ Once configured, multicast traffic will use the dummy interface instead of your 
 - Running sender and receiver on the same machine
 - Development and debugging
 
+### Verifying the Setup
+
+Confirm the route is active:
+
+```bash
+ip route show | grep 239.0.0.0
+```
+
+Verify no multicast leaks to your physical interfaces using tcpdump:
+
+```bash
+# Monitor WiFi interface - should see NO multicast traffic
+sudo tcpdump -i wlan0 multicast
+
+# Monitor dummy interface - should see your multicast packets
+sudo tcpdump -i dummy0 multicast
+```
+
+### Cleanup
+
 To remove the dummy interface when done:
 
 ```bash
 ip link delete dummy0
+```
+
+**Note:** These commands require root privileges. The dummy interface configuration will not persist across reboots unless added to your network configuration files.
+
 ```
 
 > **Note:** These commands require root privileges. The dummy interface configuration will not persist across reboots unless added to your network configuration files. On my system, I have placed the command in /etc/rc.local and enabled rc.local in systemd.
