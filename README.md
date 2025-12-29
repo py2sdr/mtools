@@ -75,8 +75,6 @@ mrecv 239.0.0.11 15004 > received_data.bin
 # Receive and pipe to another program
 mrecv 239.0.0.11 15004 | another_program
 
-# View binary data (use with caution on text terminals)
-mrecv 239.0.0.11 15004 | hexdump -C
 ```
 
 ## Technical Details
