@@ -147,7 +147,7 @@ If your system has multiple network interfaces, you may need to specify which in
 
 ## Local Dummy Network Setup
 
-For testing or to prevent multicast data from being transmitted over WiFi networks, you can set up a private dummy network interface on your local machine. This keeps all multicast traffic isolated to your system.
+To prevent multicast data from being transmitted over WiFi networks, you can set up a private dummy network interface on your local machine. This keeps all multicast traffic isolated to your system.
 
 On Linux, create a dummy network interface:
 
