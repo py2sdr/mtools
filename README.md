@@ -75,7 +75,7 @@ mrecv <multicast_group> <port>
 mrecv 239.0.0.11 15004 > received_data.bin
 
 # Receive and pipe to another program
-mrecv 239.0.0.11 15004 | ./process_data
+mrecv 239.0.0.11 15004 | another_program
 
 # View binary data (use with caution on text terminals)
 mrecv 239.0.0.11 15004 | hexdump -C
@@ -114,7 +114,7 @@ mrecv 239.0.0.11 15004 | csdr convert_u8_f | ...
 
 ```bash
 # Sender
-arecord -f S16_LE -r 48000 -c 2 | ./msend 239.0.0.11 15004
+arecord -f S16_LE -r 48000 -c 2 | msend 239.0.0.11 15004
 
 # Receiver
 mrecv 239.0.0.11 15004 | aplay -f S16_LE -r 48000 -c 2
