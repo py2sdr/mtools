@@ -85,7 +85,7 @@ mrecv <multicast_group> <port>
 
 ### Data Format
 
-- Both programs handle **binary data** (not text)
+- Both programs are data agnostic and can IQ data, audio, etc
 - The sender reads data in chunks of 512 int16_t values (1024 bytes)
 - Maximum packet size is 2048 bytes
 - Data is transmitted exactly as received with no encoding or transformation
@@ -104,7 +104,7 @@ mrecv <multicast_group> <port>
 
 ```bash
 # Transmitter side - send I/Q samples
-rtl_sdr -f 100M -s 2048000 -g 40 - | ./msend 239.0.0.11 15004
+rtl_sdr -f 51M -s 2048000 -g 40 - | ./msend 239.0.0.11 15004
 
 # Receiver side - receive and process
 ./mrecv 239.0.0.11 15004 | csdr convert_u8_f | ...
