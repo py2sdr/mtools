@@ -95,7 +95,7 @@ mrecv -a 239.0.0.11 -p 15004 -i dummy0 | another_program
 
 ## Example Use Cases
 
-### SDR/Radio Applications
+### RTL-SDR
 
 ```bash
 # Transmitter side - send I/Q samples
@@ -105,14 +105,14 @@ rtl_sdr -f 145M -s 2048000 -g 40 - | msend -a 239.0.0.11 -p 15004 -i dummy0
 mrecv -a 239.0.0.11 -p 15004 -i dummy0 | csdr convert_u8_f | ...
 ```
 
-### Audio Streaming
+### QSD-SDR
 
 ```bash
 # Sender
-arecord -f S16_LE -r 48000 -c 2 | msend -a 239.0.0.11 -p 15004 -i dummy0
+arecord -f S16_LE -r 96000 -c 2 | msend -a 239.0.0.11 -p 15004 -i dummy0
 
 # Receiver
-mrecv -a 239.0.0.11 -p 15004 -i dummy0 | aplay -f S16_LE -r 48000 -c 2
+mrecv -a 239.0.0.11 -p 15004 -i dummy0 | csdr convert_u16_f | ... | aplay -f S16_LE -r 48000 -c 2
 ```
 
 ### Data Distribution
