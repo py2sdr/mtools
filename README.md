@@ -26,8 +26,6 @@ gcc -o mrecv mrecv.c
 
 ## Installation
 
-Copy the compiled binaries to your system path:
-
 ```bash
 sudo cp msend mrecv /usr/local/bin
 ```
@@ -178,7 +176,7 @@ These programs should compile and run on:
 - BSD variants
 - Other POSIX-compliant systems
 
-Note: `SO_REUSEPORT` may not be available on older systems.
+> Note: `SO_REUSEPORT` may not be available on older systems.
 
 ## License
 
