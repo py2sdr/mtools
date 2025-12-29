@@ -167,7 +167,7 @@ To remove the dummy interface when done:
 ip link delete dummy0
 ```
 
-**Note:** These commands require root privileges. The dummy interface configuration will not persist across reboots unless added to your network configuration files. On my system, I have placed the command in /etc/rc.local and enabled rc.local in systemd.
+> **Note:** These commands require root privileges. The dummy interface configuration will not persist across reboots unless added to your network configuration files. On my system, I have placed the command in /etc/rc.local and enabled rc.local in systemd.
 
 ## Troubleshooting
 
@@ -194,7 +194,7 @@ These programs should compile and run on:
 - BSD variants
 - Other POSIX-compliant systems
 
-Note: `SO_REUSEPORT` may not be available on older systems.
+> **Note:** `SO_REUSEPORT` may not be available on older systems.
 
 ## License
 
