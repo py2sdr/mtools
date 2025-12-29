@@ -159,10 +159,10 @@ Confirm the route is active:
 ip route show | grep 239.0.0.0
 ```
 
-Verify no multicast leaks to your physical interfaces using tcpdump:
+Verify no multicast leaks to your WiFi interfaces using tcpdump:
 
 ```bash
-# Monitor WiFi interface - should see NO multicast traffic
+# Monitor WiFi interface (replace wlan0 by your WiFi interface) - should see NO multicast traffic
 sudo tcpdump -i wlan0 multicast
 
 # Monitor dummy interface - should see your multicast packets
