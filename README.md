@@ -178,18 +178,8 @@ ip link delete dummy0
 3. Ensure multicast routing is enabled on your network
 4. Try increasing TTL if devices are on different subnets
 
-### Permission errors
-
-Some systems require root privileges for multicast operations:
-
-```bash
-sudo msend -a 239.0.0.11 -p 15004 -i dummy0 < data.bin
-sudo mrecv -a 239.0.0.11 -p 15004 -i dummy0
-```
-
 ## Limitations
 
-- Maximum packet size: 2048 bytes
 - UDP provides no guarantee of delivery or ordering
 - No built-in error correction or retransmission
 - Receiver must be running before sender starts (or it will miss initial packets)
