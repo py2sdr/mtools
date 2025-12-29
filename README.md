@@ -85,7 +85,7 @@ mrecv <multicast_group> <port>
 
 ### Data Format
 
-- Both programs handle **binary data** (not text)
+- Both programs handle **binary data** (IQ, audio, etc)
 - The sender reads data in chunks of 512 int16_t values (1024 bytes)
 - Maximum packet size is 2048 bytes
 - Data is transmitted exactly as received with no encoding or transformation
