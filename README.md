@@ -13,7 +13,7 @@ This package contains two programs:
 - **msend** - Multicast sender that reads binary data from stdin and transmits it via UDP multicast
 - **mrecv** - Multicast receiver that listens for UDP multicast packets and writes them to stdout
 
-These tools are useful for streaming binary data (such as audio samples, sensor data, or SDR I/Q data) across a network to multiple receivers simultaneously.
+These tools are useful for streaming binary data (such as audio samples, sensor data, or SDR I/Q data) across a network to multiple receivers simultaneously. Receivers can be added and removed transparently, enabling scenarios like live spactrum monitoring, data distribution, and collaborative signal processing.
 
 ## Building
 
@@ -85,7 +85,7 @@ mrecv <multicast_group> <port>
 
 ### Data Format
 
-- Both programs are data agnostic and can IQ data, audio, etc
+- Both programs handle **binary data** (not text)
 - The sender reads data in chunks of 512 int16_t values (1024 bytes)
 - Maximum packet size is 2048 bytes
 - Data is transmitted exactly as received with no encoding or transformation
@@ -104,7 +104,7 @@ mrecv <multicast_group> <port>
 
 ```bash
 # Transmitter side - send I/Q samples
-rtl_sdr -f 51M -s 2048000 -g 40 - | ./msend 239.0.0.11 15004
+rtl_sdr -f 100M -s 2048000 -g 40 - | ./msend 239.0.0.11 15004
 
 # Receiver side - receive and process
 ./mrecv 239.0.0.11 15004 | csdr convert_u8_f | ...
@@ -152,6 +152,35 @@ sudo ./mrecv 239.0.0.11 15004
 ### Network interface selection
 
 If your system has multiple network interfaces, you may need to specify which interface to use for multicast. This can be done by modifying the code to set `imr_interface` to a specific interface address instead of `INADDR_ANY`.
+
+## Local Dummy Network Setup
+
+For testing or to prevent multicast data from being transmitted over WiFi networks, you can set up a private dummy network interface on your local machine. This keeps all multicast traffic isolated to your system.
+
+On Linux, create a dummy network interface:
+
+```bash
+ip link add dummy0 type dummy
+ip addr add 192.168.10.1/24 dev dummy0
+ip link set dummy0 multicast on
+ip link set dummy0 up
+ip route add 239.0.0.0/8 dev dummy0
+```
+
+Once configured, multicast traffic will use the dummy interface instead of your physical network interfaces. This is particularly useful for:
+
+- Testing multicast applications locally
+- Preventing multicast traffic on shared WiFi networks
+- Running sender and receiver on the same machine
+- Development and debugging
+
+To remove the dummy interface when done:
+
+```bash
+ip link delete dummy0
+```
+
+**Note:** These commands require root privileges. The dummy interface configuration will not persist across reboots unless added to your network configuration files.
 
 ## Limitations
 
