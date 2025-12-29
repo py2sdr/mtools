@@ -147,7 +147,7 @@ ip route add 239.0.0.0/8 dev dummy0
 Once configured, multicast traffic will use the dummy interface instead of your physical network interfaces. This is particularly useful for:
 
 - Testing multicast applications locally
-- Preventing multicast traffic on shared WiFi networks
+- Preventing multicast traffic on WiFi networks (WiFi has issues with IP Multicast)
 - Running sender and receiver on the same machine
 - Development and debugging
 
