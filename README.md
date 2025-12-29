@@ -117,19 +117,19 @@ mrecv 239.0.0.11 15004 | csdr convert_u8_f | ...
 arecord -f S16_LE -r 48000 -c 2 | ./msend 239.0.0.11 15004
 
 # Receiver
-./mrecv 239.0.0.11 15004 | aplay -f S16_LE -r 48000 -c 2
+mrecv 239.0.0.11 15004 | aplay -f S16_LE -r 48000 -c 2
 ```
 
 ### Data Distribution
 
 ```bash
 # One sender
-./data_generator | ./msend 239.0.0.11 15004
+data_generator | msend 239.0.0.11 15004
 
 # Multiple receivers (can run simultaneously)
-./mrecv 239.0.0.11 15004 > /dev/null  # Receiver 1
-./mrecv 239.0.0.11 15004 > output.bin # Receiver 2
-./mrecv 239.0.0.11 15004 | ./analyze  # Receiver 3
+mrecv 239.0.0.11 15004 > /dev/null  # Receiver 1
+mrecv 239.0.0.11 15004 > output.bin # Receiver 2
+mrecv 239.0.0.11 15004 | analyzer   # Receiver 3
 ```
 
 ## Troubleshooting
