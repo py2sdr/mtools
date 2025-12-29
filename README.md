@@ -184,7 +184,7 @@ ip link delete dummy0
 - UDP provides no guarantee of delivery or ordering (I never had a problem with this)
 - No built-in error correction or retransmission (I never had a problem with this)
 - Receiver must be running before sender starts (normally not an issue)
-- No encryption or authentication (not an issue in local networks)
+- No encryption or authentication (not an issue on local networks)
 
 ## Platform Support
 
