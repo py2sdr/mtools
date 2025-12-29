@@ -49,13 +49,13 @@ msend <multicast_group> <port> [ttl]
 
 ```bash
 # Send binary file to multicast group
-./msend 239.0.0.11 15004 < audio_samples.bin
+msend 239.0.0.11 15004 < audio_samples.bin
 
 # Send with TTL=2 (reaches devices 2 hops away)
-./msend 239.0.0.11 15004 2 < data.bin
+msend 239.0.0.11 15004 2 < data.bin
 
 # Pipe data from another program
-./generate_data | ./msend 239.0.0.11 15004
+another_program | msend 239.0.0.11 15004
 ```
 
 ### Multicast Receiver (mrecv)
@@ -72,13 +72,13 @@ mrecv <multicast_group> <port>
 
 ```bash
 # Receive and save to file
-./mrecv 239.0.0.11 15004 > received_data.bin
+mrecv 239.0.0.11 15004 > received_data.bin
 
 # Receive and pipe to another program
-./mrecv 239.0.0.11 15004 | ./process_data
+mrecv 239.0.0.11 15004 | ./process_data
 
 # View binary data (use with caution on text terminals)
-./mrecv 239.0.0.11 15004 | hexdump -C
+mrecv 239.0.0.11 15004 | hexdump -C
 ```
 
 ## Technical Details
@@ -104,10 +104,10 @@ mrecv <multicast_group> <port>
 
 ```bash
 # Transmitter side - send I/Q samples
-rtl_sdr -f 100M -s 2048000 -g 40 - | ./msend 239.0.0.11 15004
+rtl_sdr -f 100M -s 2048000 -g 40 - | msend 239.0.0.11 15004
 
 # Receiver side - receive and process
-./mrecv 239.0.0.11 15004 | csdr convert_u8_f | ...
+mrecv 239.0.0.11 15004 | csdr convert_u8_f | ...
 ```
 
 ### Audio Streaming
@@ -141,14 +141,6 @@ arecord -f S16_LE -r 48000 -c 2 | ./msend 239.0.0.11 15004
 3. Ensure multicast routing is enabled on your network
 4. Try increasing TTL if devices are on different subnets
 
-### Permission errors
-
-Some systems require root privileges for multicast operations:
-
-```bash
-sudo ./mrecv 239.0.0.11 15004
-```
-
 ### Network interface selection
 
 If your system has multiple network interfaces, you may need to specify which interface to use for multicast. This can be done by modifying the code to set `imr_interface` to a specific interface address instead of `INADDR_ANY`.
@@ -180,7 +172,7 @@ To remove the dummy interface when done:
 ip link delete dummy0
 ```
 
-**Note:** These commands require root privileges. The dummy interface configuration will not persist across reboots unless added to your network configuration files.
+**Note:** These commands require root privileges. The dummy interface configuration will not persist across reboots unless added to your network configuration files. On my system, I have placed the command in /etc/rc.local and enabled rc.local in systemd.
 
 ## Limitations
 
