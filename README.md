@@ -1,6 +1,6 @@
 # Multicast UDP Tools
 
-A pair of simple command-line utilities for sending and receiving binary data over UDP multicast.
+A pair of simple command-line utilities for sending and receiving binary SDR data over UDP multicast.
 
 ## Author
 
@@ -13,7 +13,7 @@ This package contains two programs:
 - **msend** - Multicast sender that reads binary data from stdin and transmits it via UDP multicast
 - **mrecv** - Multicast receiver that listens for UDP multicast packets and writes them to stdout
 
-These tools are useful for streaming binary data (such as audio samples, sensor data, or SDR I/Q data) across a network to multiple receivers simultaneously. Receivers can be added and removed transparently, enabling scenarios like live spectrum monitoring, instrumentation, data distribution, and parallel signal processing and demodulators.
+These tools are useful for streaming binary data (such as audio samples, sensor data, or SDR I/Q data) across a network to multiple receivers simultaneously. Receivers can be added and removed transparently, enabling use cases like live spectrum monitoring, instrumentation, and multiple demodulators.
 
 ## Building
 
@@ -104,6 +104,7 @@ rtl_sdr -f 145M -s 2048000 -g 40 - | msend -a 239.0.0.11 -p 15004 -i dummy0
 # Receiver side - receive and process
 mrecv -a 239.0.0.11 -p 15004 -i dummy0 | csdr convert_u8_f | ...
 ```
+> It is advisable to add a bandpass filter before the RTL-SDR in order to prevent issues with strong out of band signals.
 
 ### QSD-SDR
 
@@ -114,6 +115,7 @@ arecord -f S16_LE -r 96000 -c 2 | msend -a 239.0.0.11 -p 15004 -i dummy0
 # Receiver
 mrecv -a 239.0.0.11 -p 15004 -i dummy0 | csdr convert_u16_f | ... | aplay -f S16_LE -r 48000 -c 2
 ```
+> The arecord sample rate should match the sample rate of your sound card
 
 ### Data Distribution
 
