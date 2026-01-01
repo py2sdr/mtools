@@ -188,17 +188,5 @@ ip link delete dummy0
 - Receiver must be running before sender starts (normally not an issue)
 - No encryption or authentication (not an issue on local networks)
 
-## Platform Support
 
-These programs should compile and run on:
 
-- Linux
-- macOS
-- BSD variants
-- Other POSIX-compliant systems
-
-> **Note:** `SO_REUSEPORT` may not be available on older systems.
-
-## License
-
-This project is licensed under the GNU General Public License v3.0 (GPLv3).
