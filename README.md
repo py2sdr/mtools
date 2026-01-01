@@ -20,8 +20,8 @@ These tools are useful for streaming binary data (such as audio samples, sensor 
 Compile both programs using gcc:
 
 ```bash
-gcc -o msend msend.c
-gcc -o mrecv mrecv.c
+gcc -Wall -O2 -o msend msend.c
+gcc -Wall -O2 -o mrecv mrecv.c
 ```
 
 ## Installation
